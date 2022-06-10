@@ -1,0 +1,9 @@
+{
+    "presets": ["babel-preset-expo"],
+    "plugins": ["module:react-native-dotenv"],
+    "env": {
+        "development": {
+            "plugins": ["module:react-native-dotenv"]
+        }
+    }
+}

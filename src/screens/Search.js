@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useRef } from 'react';
+import Config from 'react-native-config';
+import { REACT_APP_API_KEY } from "@env";
 import {
   Dimensions, 
   SafeAreaView,
@@ -21,7 +23,7 @@ import SearchBar from '../components/SearchBar';
 import yelp from '../api/yelp';
 import useResults from '../hooks/useResults';
 import ResultsList from '../components/ResultsList';
-
+const API_KEY = REACT_APP_API_KEY;
 const Stack = createStackNavigator();
 
 const Search = ({}) => {
@@ -44,7 +46,10 @@ const Search = ({}) => {
             onTermSubmit={() => searchApi(term)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            
+            {(!process.env.NODE_ENV || process.env.NODE_ENV === 'development')? 
+    console.log("this is dev") :
+    console.log("this is not dev")
+}
             <ScrollView>
             <ResultsList results={filterResultsByPrice('$')} title="Cost Effective" />
             <ResultsList results={filterResultsByPrice('$$')} title="Bit Pricier" />
